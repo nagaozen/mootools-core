@@ -11,7 +11,7 @@ License:
 
 (function(){
 
-var Storage = this.Storage = new Native('Storage', function(){});
+Storage = new Native('Storage', function(){});
 
 var storageOf = function(item){
 	return item._storage_ || (item._storage_ = {});
@@ -40,7 +40,7 @@ Storage.implement({
 
 // Accessor
 
-this.Accessor = new Native('Accessor', function(name){
+Accessor = new Native('Accessor', function(name){
 	
 	var Name = (name || '').capitalize();
 	
@@ -59,7 +59,7 @@ this.Accessor = new Native('Accessor', function(name){
 
 // Events
 
-this.Events = new Native('Events', function(){});
+Events = new Native('Events', function(){});
 	
 var replacer = function(full, first){
 	return first.toLowerCase();
@@ -103,7 +103,7 @@ Events.implement({
 
 // Options
 
-this.Options = new Native('Options', function(){});
+Options = new Native('Options', function(){});
 	
 var optionsOf = function(object){
 	return Storage.retrieve(object, 'options', {});
@@ -133,7 +133,7 @@ Options.implement({
 
 // Chain
 
-this.Chain = new Native('Chain', function(){}).implement({
+Chain = new Native('Chain', function(){}).implement({
 	
 	chain: function(){
 		var chain = Storage.retrieve(this, 'chain', []);

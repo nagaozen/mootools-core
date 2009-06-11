@@ -20,14 +20,14 @@ Inspiration:
 
 (function(Number, String, Function, Array, Object, RegExp, Date){
 
-this.MooTools = {
+MooTools = {
 	'version': '1.99dev',
 	'build': '%build%'
 };
 
 // nil
 
-this.nil = function(item){
+nil = function(item){
 	return (item != null && item != nil) ? item : null;
 };
 
@@ -71,7 +71,7 @@ Function.prototype.implement = function(key, value){
 
 // typeOf, instanceOf
 
-this.typeOf = function(item){
+typeOf = function(item){
 	if (item == null) return 'null';
 	if (item._type_) return item._type_();
 	
@@ -88,7 +88,7 @@ this.typeOf = function(item){
 	return 'object';
 };
 
-this.instanceOf = function(item, object){
+instanceOf = function(item, object){
 	if (item == null) return false;
 	var constructor = item.constructor;
 	while (constructor){
@@ -131,7 +131,7 @@ Function.implement({
 
 // Native
 
-this.Native = function(name, object){
+Native = function(name, object){
 	
 	var lower = name.toLowerCase();
 	
@@ -208,7 +208,8 @@ new Native('Native', Native);
 // Default Natives
 
 var force = function(type, methods){
-	var object = this[type];
+	var object = type;
+	type = /function\s+(.*)\(\).*/.exec(type)[1];
 	for (var i = 0; i < methods.length; i++){
 		var name = methods[i];
 		var proto = object.prototype[name];
@@ -225,23 +226,23 @@ var force = function(type, methods){
 	new Native(type, object).implement(object.prototype);
 };
 
-force('Array', [
+force(Array, [
 	'pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift', 'concat', 'join', 'slice',
 	'indexOf', 'lastIndexOf', 'filter', 'forEach', 'every', 'map', 'some', 'reduce', 'reduceRight'
 ]);
 
-force('String', [
+force(String, [
 	'charAt', 'charCodeAt', 'concat', 'indexOf', 'lastIndexOf', 'match', 'quote', 'replace', 'search',
 	'slice', 'split', 'substr', 'substring', 'toLowerCase', 'toUpperCase'
 ]);
 
-force('Number', ['toExponential', 'toFixed', 'toLocaleString', 'toPrecision']);
+force(Number, ['toExponential', 'toFixed', 'toLocaleString', 'toPrecision']);
 
-force('Function', ['apply', 'call']);
+force(Function, ['apply', 'call']);
 
-force('RegExp', ['exec', 'test']);
+force(RegExp, ['exec', 'test']);
 
-force('Date', ['now']);
+force(Date, ['now']);
 
 new Native('Date', Date).extend('now', function(){
 	return +(new Date);

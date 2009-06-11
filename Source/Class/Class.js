@@ -8,7 +8,7 @@ License:
 
 (function(){
 
-this.Class = new Native('Class', function(params){
+Class = new Native('Class', function(params){
 	
 	if (instanceOf(params, Function)) params = {initialize: params};
 	

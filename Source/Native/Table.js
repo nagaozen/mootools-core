@@ -8,7 +8,7 @@ License:
 
 (function(){
 
-this.Table = new Native('Table', function(){
+Table = new Native('Table', function(){
 	this.table = {};
 });
 	
